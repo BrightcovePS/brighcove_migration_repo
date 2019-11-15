@@ -40,7 +40,7 @@ public class BrightCoveMetadataPatch {
             try {
                 tokenresponse = Unirest.post("https://oauth.brightcove.com/v4/access_token?grant_type=client_credentials")
                         .header("Content-Type", "application/x-www-form-urlencoded")
-                        .header("Authorization", "Basic NTc5YmNjMDgtOGViMC00ZDcxLWJlZGMtMzc3NjMyNjMwN2MyOkdJbFVBODV4cUpUaUV2bUNpU1lsNWIzYWFmRm9odFY3THJLT2V1SGl3d3c4SUp2eGItSTlvdzVNUXo3Z0hncE1lVFFxak5VeHRoZGJKMzBPZnNKRWJ3")
+                        .header("Authorization", "Basic YTcwNmI0OWMtYmUzZC00MmE2LTk4NmEtYjIwYTdmOWU1MTUzOkVIMUNBd04tMjJhRFVka3JQcWJCUV9fSzdkbEpTdko4UTNUNjZCMFV2TnVJUF9EX2U2S0RmOXRoTTdlOWJfbWxreUx3a2ZHaGxla015czFEYkZybGlB")
                         .header("Cache-Control", "no-cache")
                         .header("Postman-Token", "d79c9bee-f743-7fda-445f-8ae4d0267d1e")
                         .asString();
@@ -54,15 +54,15 @@ public class BrightCoveMetadataPatch {
             HttpResponse<String> response = null;
             try {
                 logger.debug("Metadata Request "+patch_request);
-                response = Unirest.patch("https://cms.api.brightcove.com/v1/accounts/"+patch_update_acc_id.getAccount_id()+"/videos/"+video_id)
+                response = Unirest.patch("https://cms.api.brightcove.com/v1/accounts/6057984922001/videos/"+video_id)
                         .header("Content-Type", "application/json")
                         .header("Authorization", "Bearer " + token)
                         .header("Cache-Control", "no-cache")
                         .header("Postman-Token", "cd87b9a9-4ca3-5cf8-f10a-8f3fdbea574b")
                         .body(patch_request)
                         .asString();
-                logger.debug("Patch response ::"+ response.getBody());
-                data.put(String.valueOf(i), new Object[] {patch_update_acc_id.getAccount_id(), video_id, patch_request,response.getBody()});
+                //logger.debug("Patch response ::"+ response.getBody());
+                data.put(String.valueOf(i), new Object[] {patch_update_acc_id.getAccount_id(), video_id, patch_request,(response !=null ? response.getBody():"")});
 
 
                 //This data needs to be written (Object[])
@@ -75,7 +75,7 @@ public class BrightCoveMetadataPatch {
 
 
             } catch (UnirestException e) {
-                data.put(String.valueOf(i), new Object[] {patch_update_acc_id.getAccount_id(), video_id, patch_request,response.getBody()});
+                data.put(String.valueOf(i), new Object[] {patch_update_acc_id.getAccount_id(), video_id, patch_request,(response !=null ? response.getBody():"")});
                 writeLogs(sheet, data);
                 e.printStackTrace();
                 logger.debug("Failed Performing patch update for accountid :: "+ patch_update_acc_id.getAccount_id()
@@ -87,7 +87,7 @@ public class BrightCoveMetadataPatch {
         try
         {
             //Write the workbook in file system
-            FileOutputStream out = new FileOutputStream(new File("D:\\brightcovescript\\outputlog.xlsx"));
+            FileOutputStream out = new FileOutputStream(new File("D:\\brightcovescript\\outputlog_patchmetadata_5001_10000.xlsx"));
             workbook.write(out);
             out.close();
         }
