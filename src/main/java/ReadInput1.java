@@ -18,7 +18,7 @@ import static org.apache.poi.ss.usermodel.CellType.NUMERIC;
             Map<Patch_update_accountid,Patch_update> updateMap = new HashMap<Patch_update_accountid,Patch_update>();
             try
             {
-                FileInputStream file = new FileInputStream(new File("D:\\brightcovescript\\video_cloud.xlsx"));
+                FileInputStream file = new FileInputStream(new File("D:\\brightcovescript\\video_cloud_5001_10000_patch.xlsx"));
 
                 //Create Workbook instance holding reference to .xlsx file
                 XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -51,7 +51,8 @@ import static org.apache.poi.ss.usermodel.CellType.NUMERIC;
                                 patch_update_accountid.setAccount_id(account_id);
                             }
                         if(cell.getColumnIndex()==1){
-                            video_id = new BigDecimal((cell.getNumericCellValue())).toString();
+                            //video_id = new BigDecimal((cell.getNumericCellValue())).toString();
+                            video_id = String.valueOf(cell.getStringCellValue());
                             patch_update.setVideo_id(video_id);
                         }
                         if(cell.getColumnIndex()==2){
@@ -130,7 +131,7 @@ import static org.apache.poi.ss.usermodel.CellType.NUMERIC;
             Map<Post_update_accountid,CreateRemoteVideo> updateMap = new HashMap<Post_update_accountid,CreateRemoteVideo>();
             try
             {
-                FileInputStream file = new FileInputStream(new File("D:\\brightcovescript\\video_cloud_create_50001_52022.xlsx"));
+                FileInputStream file = new FileInputStream(new File("D:\\brightcovescript\\video_cloud_create_10001_15000.xlsx"));
 
                 //Create Workbook instance holding reference to .xlsx file
                 XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -201,5 +202,3 @@ import static org.apache.poi.ss.usermodel.CellType.NUMERIC;
         }
 
     }
-
-
