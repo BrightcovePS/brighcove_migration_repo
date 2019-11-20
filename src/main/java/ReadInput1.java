@@ -7,8 +7,6 @@ import org.json.JSONObject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import brightcovescript.VideoData;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.math.BigDecimal;
