@@ -60,6 +60,7 @@ import static org.apache.poi.ss.usermodel.CellType.NUMERIC;
                         }
                         if(cell.getColumnIndex()==2){
                             patch_request = String.valueOf(cell.getStringCellValue());
+                            patch_request = filterPatchRequest(patch_request);
                             patch_update.setPatch_request(patch_request);
                         }
 
@@ -77,6 +78,24 @@ import static org.apache.poi.ss.usermodel.CellType.NUMERIC;
 
             return updateMap;
         }
+        
+        public static String filterPatchRequest(String patchRequest) {
+
+    		int start = patchRequest.indexOf("\"description\":\"");
+    		int end = patchRequest.indexOf("\",\"long_description\"");
+    		int descStartPos = start + 15;
+    		int descEndPos = end;
+    		if (start >= 0 || end >= 0) {
+    			String description = patchRequest.substring(descStartPos, descEndPos);
+    			String trimmedDesc = "";
+    			if (description.length() > 248) {
+    				trimmedDesc = description.substring(0, 248);
+    				patchRequest = patchRequest.replace(description, trimmedDesc);
+    			}
+    		}
+
+    		return patchRequest;
+    	}
 
         public static List<Patch_update_accountid> getAccountData()
         {
