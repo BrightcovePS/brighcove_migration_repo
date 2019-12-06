@@ -38,7 +38,7 @@ public class BrightCoveGetVideoData {
             try {
                 tokenresponse = Unirest.post("https://oauth.brightcove.com/v4/access_token?grant_type=client_credentials")
                         .header("Content-Type", "application/x-www-form-urlencoded")
-                        .header("Authorization", "Basic NTc5YmNjMDgtOGViMC00ZDcxLWJlZGMtMzc3NjMyNjMwN2MyOkdJbFVBODV4cUpUaUV2bUNpU1lsNWIzYWFmRm9odFY3THJLT2V1SGl3d3c4SUp2eGItSTlvdzVNUXo3Z0hncE1lVFFxak5VeHRoZGJKMzBPZnNKRWJ3")
+                        .header("Authorization", "Basic ZWVlMWVjOGMtYThhNy00ODRhLThjYzMtMDE3YTRjMmRmZGY0OkpaZ3BZUTNkRzF3UDRScEhlbVVBczZWVHdSSWVoY2hDRk0yYXVzNjFDRE9GSW5xVGhWZUR6Rk9xdkFMRW9Mc1JXWGRsMGt3RFVIbEpKbFJOX1BLY2N3")
                         .header("Cache-Control", "no-cache")
                         .header("Postman-Token", "d79c9bee-f743-7fda-445f-8ae4d0267d1e")
                         .asString();
