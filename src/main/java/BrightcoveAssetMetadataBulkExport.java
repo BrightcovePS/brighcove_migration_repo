@@ -41,7 +41,7 @@ public class BrightcoveAssetMetadataBulkExport {
 			token = getTokenWithExpiry();
 						
 			HttpResponse<String> totalCountResponse = Unirest
-					.get("https://cms.api.brightcove.com/v1/accounts/6057984922001/counts/videos")
+					.get("https://cms.api.brightcove.com/v1/accounts/6098995842001/counts/videos")
 					.header(AUTHORIZATION, "Bearer " + token).asString();
 
 			JSONObject totalCountResponseJson = new JSONObject(totalCountResponse.getBody());
@@ -52,7 +52,7 @@ public class BrightcoveAssetMetadataBulkExport {
 				if (Instant.now().toEpochMilli() < tokenExpiry) {
 
 					HttpResponse<String> videosListResponse = Unirest
-							.get("https://cms.api.brightcove.com/v1/accounts/6057984922001/videos?limit=" + limit + "&"
+							.get("https://cms.api.brightcove.com/v1/accounts/6098995842001/videos?limit=" + limit + "&"
 									+ "offset=" + offset)
 							.header(AUTHORIZATION, "Bearer " + token).asString();
 					
@@ -111,7 +111,7 @@ public class BrightcoveAssetMetadataBulkExport {
 			tokenresponse = Unirest.post("https://oauth.brightcove.com/v4/access_token?grant_type=client_credentials")
 					.header("Content-Type", "application/x-www-form-urlencoded")
 					.header(AUTHORIZATION,
-							"Basic YTcwNmI0OWMtYmUzZC00MmE2LTk4NmEtYjIwYTdmOWU1MTUzOkVIMUNBd04tMjJhRFVka3JQcWJCUV9fSzdkbEpTdko4UTNUNjZCMFV2TnVJUF9EX2U2S0RmOXRoTTdlOWJfbWxreUx3a2ZHaGxla015czFEYkZybGlB")
+							"Basic ZWVlMWVjOGMtYThhNy00ODRhLThjYzMtMDE3YTRjMmRmZGY0OkpaZ3BZUTNkRzF3UDRScEhlbVVBczZWVHdSSWVoY2hDRk0yYXVzNjFDRE9GSW5xVGhWZUR6Rk9xdkFMRW9Mc1JXWGRsMGt3RFVIbEpKbFJOX1BLY2N3")
 					.header("Cache-Control", "no-cache").asString();
 
 			JSONObject jsonObject = new JSONObject(tokenresponse.getBody());
