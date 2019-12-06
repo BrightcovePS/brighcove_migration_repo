@@ -34,7 +34,7 @@ public class BrightCoveGetVideoDataByReferenceId {
             try {
                 tokenresponse = Unirest.post("https://oauth.brightcove.com/v4/access_token?grant_type=client_credentials")
                         .header("Content-Type", "application/x-www-form-urlencoded")
-                        .header("Authorization", "Basic YTcwNmI0OWMtYmUzZC00MmE2LTk4NmEtYjIwYTdmOWU1MTUzOkVIMUNBd04tMjJhRFVka3JQcWJCUV9fSzdkbEpTdko4UTNUNjZCMFV2TnVJUF9EX2U2S0RmOXRoTTdlOWJfbWxreUx3a2ZHaGxla015czFEYkZybGlB")
+                        .header("Authorization", "Basic ZWVlMWVjOGMtYThhNy00ODRhLThjYzMtMDE3YTRjMmRmZGY0OkpaZ3BZUTNkRzF3UDRScEhlbVVBczZWVHdSSWVoY2hDRk0yYXVzNjFDRE9GSW5xVGhWZUR6Rk9xdkFMRW9Mc1JXWGRsMGt3RFVIbEpKbFJOX1BLY2N3")
                         .header("Cache-Control", "no-cache")
                         .header("Postman-Token", "d79c9bee-f743-7fda-445f-8ae4d0267d1e")
                         .asString();
@@ -47,7 +47,7 @@ public class BrightCoveGetVideoDataByReferenceId {
             logger.debug("Access_token "+token);
 
             try {
-                response = Unirest.get("https://cms.api.brightcove.com/v1/accounts/6057984922001/videos/"+reference_id)
+                response = Unirest.get("https://cms.api.brightcove.com/v1/accounts/6098995842001/videos/"+reference_id)
                         .header("Authorization", "Bearer "+token)
                         .header("Cache-Control", "no-cache")
                         .header("Postman-Token", "9d83f44b-6097-1f61-48a9-b6214bfe97fb")
