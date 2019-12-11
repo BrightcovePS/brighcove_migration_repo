@@ -148,6 +148,75 @@ import static org.apache.poi.ss.usermodel.CellType.NUMERIC;
             return accountidList;
         }
         
+          public static Map<Post_update_accountid,IngestImage> getImageData()
+        {
+            Map<Post_update_accountid,IngestImage> updateMap = new HashMap<Post_update_accountid,IngestImage>();
+            try
+            {
+                FileInputStream file = new FileInputStream(new File("D:\\brightcovescript\\AFL_image_data.xlsx"));
+
+                //Create Workbook instance holding reference to .xlsx file
+                XSSFWorkbook workbook = new XSSFWorkbook(file);
+
+                //Get first/desired sheet from the workbook
+                XSSFSheet sheet = workbook.getSheetAt(0);
+
+
+                //Iterate through each rows one by one
+                Iterator<Row> rowIterator = sheet.iterator();
+                while (rowIterator.hasNext())
+                {
+                    Row row = rowIterator.next();
+                    //For each row, iterate through all the columns
+                    Iterator<Cell> cellIterator = row.cellIterator();
+                    String account_id="";
+                    String video_id="";
+                    String reference_id="";
+                    String image_request= "";
+
+
+                    IngestImage ingestImage = null;
+                    Post_update_accountid  post_update_accountid= null;
+                    ingestImage =new IngestImage();
+                    post_update_accountid = new Post_update_accountid();
+                    while (cellIterator.hasNext())
+                    {
+                        Cell cell = cellIterator.next();
+                        //Check the cell type and format accordingly
+
+                        if(cell.getColumnIndex()==0){
+                            account_id = new BigDecimal((cell.getNumericCellValue())).toString();
+                            post_update_accountid.setAccount_id(account_id);
+                        }
+                        if(cell.getColumnIndex()==1){
+                            video_id = new BigDecimal((cell.getNumericCellValue())).toString();
+                            ingestImage.setVideo_id(video_id);
+                        }
+
+
+                        if(cell.getColumnIndex()==2){
+                            reference_id = String.valueOf(cell.getStringCellValue());
+                            ingestImage.setReference_id(reference_id);
+                        }
+                        if(cell.getColumnIndex()==3){
+                            image_request = String.valueOf(cell.getStringCellValue());
+                            ingestImage.setImage_request(image_request);
+                        }
+
+                    }
+                    updateMap.put(post_update_accountid,ingestImage);
+
+                }
+                file.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            return updateMap;
+        }
+        
         public static String filterPostRequest (String postRequest) {
         	
         	int nameStartPos = postRequest.indexOf("\"name\": \"") + 9;
